@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { selectError, selectIsLoading } from "../../redux/selectors";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Layout from "../Layout/Layout.jsx";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage";

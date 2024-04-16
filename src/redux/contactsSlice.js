@@ -27,6 +27,7 @@ const onFetchFullfilledAdd = (state, action) => {
 
 const onFetchError = (state, action) => {
     console.log(action)
+    state.loading = false;
     state.error = action.payload;
     toast.error(action.payload)
 }
