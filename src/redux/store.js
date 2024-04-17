@@ -10,15 +10,11 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { combineReducers, configureStore, createReducer } from "@reduxjs/toolkit";
-import { filtersReducer } from "./filtersSlice";
-import { contactsReducer } from "./contactsSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-const authReducer = createReducer([], builder => {
-    console.log(builder)
-}
-
-)
+import { filtersReducer } from './filters/slice';
+import { contactsReducer } from './contacts/slice';
+import { authReducer } from './auth/slice';
 
 const authPersistConfig = {
     key: 'auth',

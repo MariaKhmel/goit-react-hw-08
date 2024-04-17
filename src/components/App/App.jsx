@@ -1,13 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-import ContactForm from "../ContactForm/ContactForm";
-import SearchBox from "../SearchBox/SearchBox";
-import ContactList from "../ContactList/ContactList";
-import Spinner from "../Spinner/Spinner";
-import css from "./App.module.css";
-import { fetchContacts } from "../../redux/contactsOps";
-import { useEffect } from "react";
-import { selectError, selectIsLoading } from "../../redux/selectors";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../Layout/Layout.jsx";
@@ -15,33 +5,48 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage";
 import LoginPage from "../../pages/LoginPage/LoginPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage.jsx";
+import ContactsPage from "../../pages/ContactsPage/ContactsPage.jsx";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { refreshUser } from "../../redux/auth/operations.js";
+import RestrictedRoute from "../RestrictedRoute.jsx";
+import PrivateRoute from "../PrivateRoute.jsx";
 
 function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectError);
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
-
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
     <>
+      <ToastContainer />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={RegistrationPage}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/contacts" />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={ContactsPage} />
+            }
+          />
         </Routes>
       </Layout>
     </>
-
-    // <div className={css.container}>
-    //   <ToastContainer />
-    //   <h1>Phonebook</h1>
-    //   <ContactForm />
-    //   <SearchBox />
-    //   {isLoading ? <Spinner /> : isError ? <ErrorMessage /> : <ContactList />}
-    // </div>
   );
 }
 
