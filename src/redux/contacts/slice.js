@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./operations";
 import toast from "react-hot-toast";
+import { logout } from "../auth/operations";
 
 
 const onFetchPending = (state) => {
@@ -31,6 +32,12 @@ const onFetchError = (state, action) => {
     toast.error(action.payload)
 }
 
+const onLogOut = (state) => {
+    state.items = [];
+    state.loading = false;
+    state.error = null;
+}
+
 const contactsSlice = createSlice({
     name: 'contacts',
     initialState: {
@@ -49,6 +56,7 @@ const contactsSlice = createSlice({
             .addCase(addContact.pending, onFetchPending)
             .addCase(addContact.fulfilled, onFetchFullfilledAdd)
             .addCase(addContact.rejected, onFetchError)
+            .addCase(logout.fulfilled, onLogOut)
     }
 })
 

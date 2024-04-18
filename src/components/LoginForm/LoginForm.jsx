@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { loginFormSchema } from "../../utils/schema";
 import css from "./LoginForm.module.css";
+import { fetchContacts } from "../../redux/contacts/operations";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const LoginForm = () => {
       .unwrap()
       .then(() => {
         toast.success("Logged in successfully!");
+        dispatch(fetchContacts());
       })
       .catch((error) => {
         console.log(error);
