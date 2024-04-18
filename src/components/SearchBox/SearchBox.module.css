@@ -1,7 +1,9 @@
 .searchbox {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .filterInput {
   width: 300px;
+  border: 1px solid black;
+  border-radius: 4px;
 }

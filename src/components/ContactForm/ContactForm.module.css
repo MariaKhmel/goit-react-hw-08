@@ -4,25 +4,23 @@
 
   width: 300px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 
   border: 1px solid black;
   border-radius: 4px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
 }
 
 .error {
   color: red;
 }
 
-input {
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 100%;
-}
-
 .formBtn {
   margin-right: auto;
   margin-left: auto;
-  margin-top: 8px;
 }

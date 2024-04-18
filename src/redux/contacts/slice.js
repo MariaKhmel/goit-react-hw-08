@@ -1,8 +1,6 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./operations";
-import { selectContacts } from "./selectors";
-import { toast } from "react-toastify";
-import { selectNameFilter } from "../filters/selectors";
+import toast from "react-hot-toast";
 
 
 const onFetchPending = (state) => {

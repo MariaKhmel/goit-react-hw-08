@@ -1,0 +1,15 @@
+.registrationForm {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.error {
+  color: red;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
